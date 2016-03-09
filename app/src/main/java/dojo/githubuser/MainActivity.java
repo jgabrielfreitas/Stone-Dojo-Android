@@ -7,10 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import java.util.List;
+
 import dojo.githubuser.utils.Feedback;
 import dojo.githubusercore.retrofit.GitHubAPI;
 import dojo.githubusercore.retrofit.RetrofitCallback;
 import dojo.githubusercore.retrofit.RetrofitConsumer;
+import dojo.githubusercore.user.UserRepoListResponse;
 import dojo.githubusercore.user.UserResponse;
 import retrofit.Response;
 

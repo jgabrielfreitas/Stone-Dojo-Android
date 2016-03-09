@@ -1,6 +1,9 @@
 package dojo.githubusercore.retrofit;
 
 
+import java.util.List;
+
+import dojo.githubusercore.user.UserRepoListResponse;
 import dojo.githubusercore.user.UserResponse;
 import retrofit.Call;
 import retrofit.http.GET;
