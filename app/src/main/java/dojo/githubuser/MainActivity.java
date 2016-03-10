@@ -1,5 +1,6 @@
 package dojo.githubuser;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -39,17 +40,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     public void onClick(View v) {
 
-        String usernameToSearch = userEditText.getText().toString();
+        final String usernameToSearch = userEditText.getText().toString();
 
         RetrofitConsumer<UserResponse> retrofitConsumer = new RetrofitConsumer<UserResponse>(this, BuildConfig.URL_API);
         GitHubAPI gitHubAPI = retrofitConsumer.getRetrofit().create(GitHubAPI.class);
+
+        // @GET("users/{user}")
         retrofitConsumer.executable(gitHubAPI.getUserInfo(usernameToSearch));
+
         retrofitConsumer.setErrorClass(UserResponse.class);
         retrofitConsumer.setWorkInBackground(false);
         retrofitConsumer.setDialogMessage("Carregando informações");
         retrofitConsumer.setRetrofitCallback(new RetrofitCallback<UserResponse>() {
             public void onSuccess(UserResponse response) {
                 Log.e("Success", response.toString());
+
+                Intent repoActivityIntent = new Intent(MainActivity.this, RepoListActivity.class);
+                repoActivityIntent.putExtra("usernameToSearch", usernameToSearch);
+                startActivity(repoActivityIntent);
+
             }
 
             public void clientError(UserResponse object, Response<UserResponse> response) {

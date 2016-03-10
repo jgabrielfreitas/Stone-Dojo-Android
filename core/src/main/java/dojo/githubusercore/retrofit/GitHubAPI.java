@@ -16,4 +16,7 @@ public interface GitHubAPI {
 
     @GET("users/{user}")
     Call<UserResponse> getUserInfo(@Path("user") String user);
+
+    @GET("users/{user}/repos")
+    Call<List<UserRepoListResponse>> getUserRepos(@Path("user") String user);
 }
